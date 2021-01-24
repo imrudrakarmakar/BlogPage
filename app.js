@@ -16,9 +16,10 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("process.env.MONGODB_URI" || "mongodb://localhost:27017/blogDB", {
+mongoose.connect("process.env.MONGODB_URI || mongodb://localhost:27017/blogDB", {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false 
 });
 
 
