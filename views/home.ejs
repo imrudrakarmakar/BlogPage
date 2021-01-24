@@ -3,17 +3,18 @@
 <h1>Home</h1>
 
 
-<p>Hello, everyone, and welcome to this Wonderful Journal.</p>
-<p>It is an Open Journal where you can share your thoughts, write stories, post some facts and share this blog with your friends.</p>
-<p>Thank you!!!!</p>
+<h4>Hello, everyone, and welcome to this Wonderful Journal.</h4>
+<h4>It is an Open Journal where you can share your thoughts, write stories, post some facts and share this blog with your friends.</h4>
+<h4>Thank you!!!!</h4>
 
     <% posts.forEach(function(post){ %>
-        <% console.log(post.title); %>
         <h2> <%= post.title %> </h2>
-        <p> 
+        <h4> 
             <%= post.content.substring(0, 100) + "..." %> 
             <a href="/posts/<%= post._id %>">Read more</a>
-        </p>
+            <br>
+            <!-- <a href="/posts/<%= post._id %>/delete">Delete</a> -->
+        </h4>
     <% }) %>
 
 <%- include("partials/footer") -%>

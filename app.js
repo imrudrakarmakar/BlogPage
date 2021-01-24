@@ -16,7 +16,11 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://admin-rudra:Test123@cluster0.xn19e.mongodb.net/blogDB", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("process.env.MONGODB_URI" || "mongodb://localhost:27017/blogDB", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
 
 const postSchema = {
   title: String,
@@ -40,8 +44,19 @@ app.get("/posts/:postId", function(req, res){
   Post.findOne({_id: requestPostId}, function(err, post){
     res.render("post", {
       title : post.title, 
-      content: post.content
+      content: post.content,
+      postDelete: requestPostId
     });
+  });
+});
+
+app.post("/posts/:postId/delete", function(req, res){
+  console.log("Delete request");
+  const requestPostId = req.params.postId;
+  Post.findOneAndRemove({_id: requestPostId}, function(err){
+    if(!err){
+      res.redirect("/");
+    }
   });
 });
 
@@ -68,7 +83,6 @@ app.post("/compose", function(req, res){
     }
   });
 });
-
 
 
 

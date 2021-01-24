@@ -2,7 +2,15 @@
 
 <h1><%= title %></h1>
 
-<p> <%= content %> </p>
+<h4> <%= content %> </h4>
+
+<br><br>
+<form action="/posts/<%= postDelete %>/delete" method="post">
+    <button class="btn btn-raised btn-danger" style="bottom: auto;" type="submit">Delete Post</button>
+</form>
+
+<!-- <a href="/posts/<%= postDelete %>/delete">Delete</a> -->
+
 
 
 <%- include("partials/footer") -%>
